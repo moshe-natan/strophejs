@@ -1488,7 +1488,12 @@ class Connection {
             });
             if (this._sasl_mechanism.isClientFirst) {
                 const response = this._sasl_mechanism.clientChallenge(this);
-                request_auth_exchange.t(btoa(/** @type {string} */ (response)));
+                // request_auth_exchange.t(btoa(/** @type {string} */ (response)));
+                console.log('changes ==== ');
+                
+
+                request_auth_exchange.t(btoa(unescape(encodeURIComponent(/** @type {string} */ (response)))))
+                
             }
             this.send(request_auth_exchange.tree());
             mechanism_found = true;
